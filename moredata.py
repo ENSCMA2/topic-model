@@ -4,12 +4,15 @@ from nltk.stem.wordnet import WordNetLemmatizer
 import string
 from collections import Counter
 import random
+import csv
 
 nltk.download("stopwords")
 nltk.download("punkt")
 nltk.download("wordnet")
 nltk.download("gutenberg")
 
+def load_data(filename):
+  data = open(filename, "r+")
 doc1 = "Sugar is bad to consume. My sister likes to have sugar, but not my father."
 doc2 = "My father spends a lot of time driving my sister around to dance practice."
 doc3 = "Doctors suggest that driving may cause increased stress and blood pressure."
