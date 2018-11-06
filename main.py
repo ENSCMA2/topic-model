@@ -33,6 +33,15 @@ doc_clean = [clean(doc).split() for doc in doc_complete]
 passes = 50
 num_topics = 3
 
+def map(clean_doc):
+  topic_map = []
+  for doc in doc_clean:
+    topic_map.append([])
+    for word in doc:
+      assignment = random.randint(1, num_topics)
+      topic_map[-1].append((word, assignment))
+  return topic_map
+
 def t_given_d(doc_map, t):
   t_count = 0
   for word, assignment in doc_map:
@@ -96,12 +105,7 @@ def output(topic_map, num_topics):
   return output
 
 def lda(doc_clean, num_topics, passes):
-  topic_map = []
-  for doc in doc_clean:
-    topic_map.append([])
-    for word in doc:
-      assignment = random.randint(1, num_topics)
-      topic_map[-1].append((word, assignment))
+  topic_map = map(doc_clean)
   print("random topic map: " + repr(topic_map))
   for i in range(passes):
     update(topic_map)
@@ -109,4 +113,4 @@ def lda(doc_clean, num_topics, passes):
   
   return output(topic_map, num_topics)
   
-print(lda(doc_clean, 3, 100))
+print(lda(doc_clean, num_topics, passes))
