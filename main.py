@@ -35,7 +35,7 @@ num_topics = 3
 
 def map(clean_doc):
   topic_map = []
-  for doc in doc_clean:
+  for doc in clean_doc:
     topic_map.append([])
     for word in doc:
       assignment = random.randint(1, num_topics)
