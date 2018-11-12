@@ -101,7 +101,8 @@ def output(topic_map, num_topics):
     output += "\n"
   return output
 
-def lda(doc_clean, num_topics, passes):
+def lda(doc_complete, num_topics, passes):
+  doc_clean = [clean(doc).split() for doc in doc_complete]  
   topic_map = map(doc_clean, num_topics)
   print("random topic map: " + repr(topic_map))
   for i in range(passes):
@@ -112,4 +113,18 @@ def lda(doc_clean, num_topics, passes):
 
 passes = 50
 topics = 3 
-print(lda(doc_clean, topics, passes))
+print(lda(doc_complete, topics, passes))
+
+user_corpus = []
+
+user_doc = input("Enter the first document! If you want to finish your corpus, just type \'corpus done\'.\n")
+
+while user_doc != "quit":
+  while user_doc != "corpus done":
+    user_corpus.append(user_doc)
+    user_doc = input("Enter another document! If you want to finish your corpus, just type \'corpus done\'.\n")
+  topics = int(input("How many topics are you looking for?"))
+  print(lda(user_corpus, topics, passes))
+  user_corpus = []
+  user_doc = input("Enter the first document! If you want to finish your corpus, just type \'corpus done\'.\n")
+
