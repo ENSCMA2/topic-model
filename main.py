@@ -86,7 +86,7 @@ def output(topic_map, num_topics):
     grouped_by_topic.append([word for word, assignment in tuple_list if assignment == topic])
   topic_breakdowns = []
   for topic in range(1, num_topics+1):
-    topic_breakdowns.append(Counter([word for word in grouped_by_topic[topic - 1]]))
+    topic_breakdowns.append(Counter(grouped_by_topic[topic - 1]))
   for i in range(len(topic_breakdowns)):
     total = sum(topic_breakdowns[i].values())
     for j in topic_breakdowns[i].keys():
